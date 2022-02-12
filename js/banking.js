@@ -17,6 +17,18 @@ function updateTotal(totalId, inputAmount) {
     total.innerText = previousTotal + inputAmount;
 }
 
+function updateBalance(inputAmount, isAdd) {
+    const balanceTotal = document.getElementById('balance-total');
+    const balanceTotalText = balanceTotal.innerText;
+    const previousBalanceTotal = parseFloat(balanceTotalText);
+    if (isAdd == true) {
+        balanceTotal.innerText = previousBalanceTotal + inputAmount;
+    }
+    else {
+        balanceTotal.innerText = previousBalanceTotal - inputAmount;
+    }
+}
+
 
 // handle deposit button
 document.getElementById('deposit-button').addEventListener('click', function () {
@@ -41,11 +53,15 @@ document.getElementById('deposit-button').addEventListener('click', function () 
     updateTotal('deposit-total', depositAmount);
 
     // update account balance
+    /*
     const balanceTotal = document.getElementById('balance-total');
     const balanceTotalText = balanceTotal.innerText;
     const previousBalanceTotal = parseFloat(balanceTotalText);
 
     balanceTotal.innerText = previousBalanceTotal + depositAmount;
+    */
+
+    updateBalance(depositAmount, true);
 });
 
 
@@ -70,9 +86,12 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
     updateTotal('withdraw-total', withdrawAmount);
 
     // update balance after withdrawal
-    const balanceTotal = document.getElementById('balance-total');
+    /* const balanceTotal = document.getElementById('balance-total');
     const BalanceTotalText = balanceTotal.innerText;
     const previousBalanceTotal = parseFloat(BalanceTotalText);
 
     balanceTotal.innerText = previousBalanceTotal - withdrawAmount;
+    */
+
+    updateBalance(withdrawAmount, false);
 });
